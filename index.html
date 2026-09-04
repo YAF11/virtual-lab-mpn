@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#063247">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Lab MPN">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="apple-touch-icon" href="lab-icon.svg">
+  <title>Virtual Laboratory – MPN Coliform</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="enhancements.css">
+</head>
+<body>
+  <main class="app-shell">
+    <header class="topbar">
+      <div class="brand"><span class="flask-mark">⌬</span><div><b>VIRTUAL LABORATORY</b><small>PEMERIKSAAN APM/MPN COLIFORM — AIR SUMUR BOR</small></div></div>
+      <div class="top-actions"><button id="helpBtn" class="text-btn">? Petunjuk</button><button id="resetBtn" class="text-btn">↻ Reset Lab</button><div class="step-readout">Tahap <b id="stageNumber">1</b> dari 10 <span class="progress"><i id="progressFill"></i></span></div></div>
+    </header>
+
+    <section class="lab-layout">
+      <aside class="equipment-panel panel">
+        <h2>ALAT &amp; BAHAN</h2>
+        <p class="panel-hint">Tarik objek dari meja dengan mouse.</p>
+        <div class="inventory">
+          <button class="inventory-item focusable" data-focus="pipette10"><span class="mini pipette-mini"></span>Pipet ukur 10 mL<br><em>+ bulb merah</em></button>
+          <button class="inventory-item focusable" data-focus="pipette1"><span class="mini pipette-mini small-pipette-mini"></span>Pipet ukur 1 mL<br><em>+ bulb merah</em></button>
+          <button class="inventory-item focusable" data-focus="bottle"><span class="mini bottle-mini"></span>Botol sampel kaca<br><em>250 mL</em></button>
+          <button class="inventory-item focusable" data-focus="tube-rack"><span class="mini rack-mini"></span>Tabung LTB + Durham</button>
+          <button class="inventory-item focusable" data-focus="incubator"><span class="mini incubator-mini"></span>Inkubator LTB<br><em>suhu dapat diatur</em></button>
+          <button class="inventory-item focusable" data-focus="incubator44"><span class="mini incubator-mini"></span>Inkubator ECB<br><em>default 44°C</em></button>
+          <button class="inventory-item focusable" data-focus="bglb-rack"><span class="mini tube-mini"></span>Rak BGLB (6 tabung)</button>
+          <button class="inventory-item focusable" data-focus="ecb-rack"><span class="mini tube-mini ecb-mini"></span>Rak ECB (6 tabung)</button>
+          <button class="inventory-item focusable" data-focus="ose"><span class="mini ose-mini"></span>Jarum ose</button>
+          <button class="inventory-item focusable" data-focus="alcohol"><span class="mini alcohol-mini"></span>Spray alkohol 70%</button>
+          <button class="inventory-item focusable" data-focus="bunsen"><span class="mini bunsen-mini"></span>Bunsen / spiritus</button>
+          <button class="inventory-item focusable" data-focus="waste"><span class="mini waste-mini"></span>Tempat limbah</button>
+        </div>
+      </aside>
+
+      <section class="bench-section">
+        <div class="instruction-card">
+          <div><span id="instructionKicker">LANGKAH 1 — PENGAMBILAN SAMPEL</span><h1 id="instructionTitle">Ambil sampel dengan pipet ukur</h1><p id="instructionText">Klik, tahan, lalu arahkan ujung pipet ke mulut botol sampel kaca 250 mL.</p></div>
+          <div class="action-slot" id="actionSlot"></div>
+        </div>
+        <div id="bench" class="bench" aria-label="Meja laboratorium interaktif">
+          <div class="lab-backdrop"><div class="shelf shelf-a"></div><div class="shelf shelf-b"></div><div class="sink"><i></i></div><div class="window-light"></div></div>
+          <div class="steel-surface"></div>
+          <div id="dropNotice" class="drop-notice">Tarik pipet tegak lurus lalu lepaskan di area target berpendar — target akan menangkap pipet secara otomatis.</div>
+
+          <div id="bottle" class="lab-object bottle" data-draggable data-name="Botol sampel" tabindex="0" aria-label="Botol sampel air sumur bor, 250 mililiter">
+            <div class="cap"></div><div class="glass-neck"></div><div class="bottle-body"><div class="water"></div><span class="graduation g1">250</span><span class="graduation g2">200</span><span class="graduation g3">150</span><span class="graduation g4">100</span><span class="bottle-label">AIR SUMUR BOR<br><b>ASB-01</b></span></div><span class="glass-shine"></span>
+          </div>
+
+          <div id="pipette10" class="lab-object pipette pipette10" data-draggable data-name="Pipet ukur 10 mL" tabindex="0" aria-label="Pipet ukur 10 mililiter dengan bulb merah">
+            <div class="pipette-tip"></div><div class="pipette-stem"><i></i><i></i><i></i><i></i><i></i><i></i><b class="sample-column"></b></div><div class="bulb"><span class="bulb-ring"></span><span class="valve valve-a"></span><span class="valve valve-b"></span><span class="valve valve-c"></span></div><span class="pipette-label">10 mL</span>
+          </div>
+          <div id="pipette1" class="lab-object pipette pipette1" data-draggable data-name="Pipet ukur 1 mL" tabindex="0" aria-label="Pipet ukur 1 mililiter dengan bulb merah">
+            <div class="pipette-tip"></div><div class="pipette-stem"><i></i><i></i><i></i><i></i><i></i><i></i><b class="sample-column"></b></div><div class="bulb"><span class="bulb-ring"></span><span class="valve valve-a"></span><span class="valve valve-b"></span><span class="valve valve-c"></span></div><span class="pipette-label">1 mL</span>
+          </div>
+          <button id="alcohol" class="lab-object alcohol" data-draggable data-name="Spray alkohol 70 persen" type="button" aria-label="Spray alkohol 70 persen"><span class="nozzle"></span><span class="alcohol-label">ALKOHOL<br><b>70%</b></span></button>
+          <div id="bunsen" class="lab-object bunsen" data-draggable data-name="Bunsen spiritus" tabindex="0" aria-label="Bunsen spiritus"><span class="flame"></span><span class="wick"></span><span class="burner-base"></span><small>BUNSEN</small></div>
+          <div id="ose" class="lab-object ose" data-draggable data-name="Jarum ose" tabindex="0" aria-label="Jarum ose"><span class="ose-handle"></span><span class="ose-wire"></span><span class="ose-loop"></span><small>OSE</small></div>
+
+          <div id="tube-rack" class="lab-object tube-rack" data-draggable data-name="Rak tabung LTB" tabindex="0" aria-label="Rak berisi 15 tabung LTB dan Durham">
+            <div class="rack-title">LTB + DURHAM</div><div class="rack-back"></div><div id="tubeGrid" class="tube-grid"></div><div class="rack-base"></div>
+          </div>
+
+          <div id="incubator" class="lab-object incubator" data-draggable data-name="Inkubator LTB" tabindex="0" aria-label="Inkubator LTB dengan suhu yang dapat diatur"><div class="incub-body"><div id="incDoor" class="inc-door"><span class="rack-shadow"></span></div><span class="handle"></span><label class="temp-control"><input id="temp37" type="number" min="20" max="50" step="0.5" value="37" aria-label="Suhu inkubator LTB">°C</label></div><span>INKUBATOR LTB</span></div>
+          <div id="incubator44" class="lab-object incubator incubator44" data-draggable data-name="Inkubator ECB" tabindex="0" aria-label="Inkubator ECB dengan suhu yang dapat diatur"><div class="incub-body"><div class="inc-door"><span class="rack-shadow"></span></div><span class="handle"></span><label class="temp-control"><input id="temp44" type="number" min="20" max="50" step="0.5" value="44" aria-label="Suhu inkubator ECB">°C</label></div><span>INKUBATOR ECB</span></div>
+          <div id="bglb-rack" class="lab-object confirm-rack bglb-rack" data-draggable data-name="Rak tabung BGLB" tabindex="0" aria-label="Rak enam tabung BGLB"><div class="rack-title">BGLB — 6 TABUNG</div><div id="bglbGrid" class="confirm-grid"></div><div class="rack-base"></div></div>
+          <div id="ecb-rack" class="lab-object confirm-rack ecb-rack" data-draggable data-name="Rak tabung ECB" tabindex="0" aria-label="Rak enam tabung ECB"><div class="rack-title">ECB — 6 TABUNG</div><div id="ecbGrid" class="confirm-grid"></div><div class="rack-base"></div></div>
+          <div id="waste" class="lab-object waste" data-draggable data-name="Tempat limbah" tabindex="0"><span></span><small>LIMBAH</small></div>
+        </div>
+        <footer class="statusbar"><b>STATUS:</b><span id="statusText" aria-live="polite">Siap mengambil sampel.</span><span class="timer-readout">◷ Waktu inkubasi: <b id="timerText">—</b></span></footer>
+      </section>
+
+      <aside class="right-panel">
+        <section class="panel procedure"><h2>PROSEDUR</h2><ol id="procedureList"></ol></section>
+        <section class="panel results"><h2>HASIL</h2><div id="resultContent"><p>Belum ada hasil. Ikuti prosedur satu per satu.</p></div></section>
+      </aside>
+    </section>
+  </main>
+
+  <dialog id="helpDialog"><button class="dialog-close" id="closeHelp">×</button><h2>Cara menggunakan virtual lab</h2><p>Gunakan mouse: klik kiri, tahan, geser, lalu lepaskan. Objek yang dibutuhkan akan memiliki garis berpendar.</p><p>Setiap langkah harus dilakukan langsung di meja. Progress tidak dapat dilewati dengan tombol Next.</p></dialog>
+  <script src="script.js"></script>
+  <script>
+    if ('serviceWorker' in navigator && location.protocol.startsWith('http')) {
+      navigator.serviceWorker.register('./service-worker.js').catch(() => {});
+    }
+  </script>
+</body>
+</html>

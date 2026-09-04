@@ -1,0 +1,110 @@
+/* Precision and accessibility pass: keep pipettes vertical and enlarge drop targets. */
+.bench { min-height: 650px; }
+.pipette { width: 84px; height: 280px; transform: none !important; transform-origin: center !important; transition: filter .12s ease; will-change: left, top; }
+.pipette10 { left: 22%; bottom: 11%; }
+.pipette1 { left: 33%; bottom: 11%; transform: scale(.82) !important; transform-origin: bottom center !important; }
+.pipette-tip { width: 8px; height: 40px; left: 38px; top: auto; bottom: 0; background: linear-gradient(90deg, transparent, #9fc5c9, transparent); clip-path: polygon(50% 100%, 100% 0, 0 0); }
+.pipette-stem { left: 33px; top: 61px; width: 17px; height: 180px; border-radius: 12px; background: linear-gradient(90deg, #efffff, #8dc3c8 48%, #fff); z-index: 1; }
+.pipette-stem i { float: none; display: block; width: 15px; height: 20px; margin: 3px 0; border-right: 2px solid #a64b40; }
+.pipette-stem .sample-column { inset: 3px; border-radius: 10px; }
+.bulb { right: 9px; top: 0; z-index: 3; }
+.bulb::after { content: ""; position: absolute; width: 25px; height: 24px; left: 20px; bottom: -16px; z-index: 2; border-radius: 4px 4px 10px 10px; background: linear-gradient(90deg, #761514, #c93631 48%, #7b1616); box-shadow: inset 2px 0 #ed675d; }
+.pipette-label { left: 53px; top: 134px; white-space: nowrap; background: #ffffffdc; padding: 2px 3px; border-radius: 2px; font-weight: 700; }
+.lab-object.dragging { transition: none; }
+.lab-object.required { outline: 3px solid #1be5ad; outline-offset: 6px; border-radius: 6px; }
+
+.tube-rack { width: 470px; height: 238px; left: 39%; bottom: 5%; }
+.tube-grid { top: 39px; left: 22px; right: 22px; grid-template-columns: repeat(15, 1fr); gap: 5px; }
+.test-tube { height: 142px; min-width: 0; border-width: 2px; }
+.test-tube:before { display:none; }
+.test-tube .tube-cap { position:absolute; left:-3px; right:-3px; top:-10px; height:10px; border:2px solid #8da4a5; border-radius:3px; background:repeating-linear-gradient(90deg,#e6efeb 0 3px,#b1c4c2 3px 5px); z-index:5; }
+.test-tube .liquid { height:24% !important; background:linear-gradient(90deg,#e5cf70,#fff0a0 50%,#cfb85b) !important; }
+.test-tube.inoculated .liquid { height:32% !important; }
+.test-tube.positive .liquid { height:48% !important; background:linear-gradient(90deg,#b9a85d,#d9c36f 50%,#a69347) !important; }
+.test-tube.lifted { transform:translateY(-32px) scale(1.08); z-index:16; filter:drop-shadow(0 10px 7px #17323788); transition:transform .18s ease; }
+.test-tube .durham-tube { position: absolute; display: block; width: 9px; height: 41px; right: 2px; bottom: 21px; border: 1px solid #dfffff; border-radius: 6px; background: #eaffff5c; z-index: 2; }
+.test-tube .durham-tube b { display: none; position: absolute; width: 5px; height: 8px; left: 1px; top: 3px; background: #fff; border-radius: 50%; box-shadow: 0 10px 0 #ffffffcc; }
+.test-tube.positive .durham-tube b, .confirm-tube.positive .durham-tube b { display: block; }
+.test-tube.positive:after { display: none; }
+.volume-label { top: -29px; font-size: 10px; color: #033c59; }
+.tube-num { bottom: -19px; font-size: 9px; }
+.rack-back { height: 124px; }
+.rack-base { bottom: 12px; height: 29px; }
+
+.confirm-rack { width: 188px; height: 151px; bottom: 10%; background: #eaf2f0aa; border: 5px solid #b2c0bf; border-radius: 5px; box-shadow: 0 6px 7px #203f4166; }
+.bglb-rack { left: 72%; bottom: 37%; }
+.ecb-rack { left: 72%; bottom: 10%; }
+.confirm-rack .rack-title { margin: 0 -1px; background: #e5f5ee; }
+.confirm-rack .rack-base { left: 5px; right: 5px; bottom: 7px; height: 17px; }
+.confirm-grid { position: absolute; left: 13px; right: 13px; top: 27px; display: grid; grid-template-columns: repeat(6, 1fr); gap: 6px; z-index: 2; }
+.confirm-tube { position: relative; height: 88px; min-width: 0; padding: 0; border: 2px solid #9dbfc2; border-top: 7px solid #c9dcda; border-radius: 3px 3px 10px 10px; background: #efffffba; cursor: pointer; color: #34555a; font-size: 8px; }
+.confirm-tube .tube-cap { position:absolute; left:-3px; right:-3px; top:-10px; height:9px; border:2px solid #8ea9a6; border-radius:3px; background:#dce8e4; z-index:5; }
+.confirm-tube .liquid { position: absolute; left: 1px; right: 1px; bottom: 1px; height: 0; border-radius: 0 0 7px 7px; background: #aadbd3; transition: height .25s ease; }
+.bglb-tube .liquid { height:35%; background:linear-gradient(90deg,#4caa79,#98db9e 50%,#3b9368); }
+.ecb-tube .liquid { height:35%; background:linear-gradient(90deg,#e6d06d,#fff0a0 50%,#cdb657); }
+.confirm-tube.inoculated .liquid { height:45%; }
+.confirm-tube.positive .liquid { height:51%; background:#b4a861; }
+.confirm-tube .durham-tube { position: absolute; display: block; width: 8px; height: 28px; right: 3px; bottom: 14px; border: 1px solid #fff; border-radius: 5px; background: #e8ffff9c; z-index: 2; }
+.confirm-tube .durham-tube b { display: none; position: absolute; width: 4px; height: 5px; left: 1px; top: 2px; background: #fff; border-radius: 50%; }
+.confirm-tube > span:last-child { position: absolute; bottom: -12px; left: 0; right: 0; z-index: 4; }
+.confirm-rack.required, .confirm-tube.required { animation: softPulse 1s infinite; }
+@keyframes softPulse { 50% { box-shadow: 0 0 16px #10dca1; } }
+
+.incubator44 { right: 27%; top: 12%; transform: scale(.84); transform-origin: top right; }
+.temp-control { position: absolute; right: 8px; bottom: 9px; display: flex; align-items: center; gap: 2px; padding: 2px 4px; background: #192c2e; color: #fb5b59; font: 11px monospace; z-index: 8; }
+.temp-control input { width: 39px; border: 0; outline: 0; background: transparent; color: #ff6863; text-align: right; font: inherit; font-weight: 700; }
+.temp-control input::-webkit-inner-spin-button { opacity: 1; }
+.drop-ready { outline: 4px solid #10dca1 !important; outline-offset: 5px; box-shadow: 0 0 20px #14e0a8; }
+
+.alcohol { left:4%; top:12%; width:66px; height:113px; padding:0; border:2px solid #91bfc1; border-radius:8px 8px 13px 13px; cursor:pointer; background:linear-gradient(90deg,#9be2e1,#f3ffff 48%,#79c9cc); box-shadow:inset 8px 0 #ffffff77; z-index:5; }
+.alcohol .nozzle { position:absolute; width:45px; height:13px; left:18px; top:-12px; border:3px solid #7b9e9f; border-bottom:0; border-radius:8px 8px 0 0; background:#e8f6f5; }
+.alcohol .nozzle:after { content:""; position:absolute; width:25px; height:7px; right:-20px; top:4px; background:#75999c; border-radius:1px 5px 5px 1px; }
+.alcohol-label { position:absolute; bottom:16px; left:5px; right:5px; color:#155467; background:#f4ffffd9; font:9px/1.2 Arial; padding:4px 1px; }
+.alcohol.sprayed:after { content:""; position:absolute; right:-65px; top:-9px; width:56px; height:28px; border-top:3px dotted #b6ffff; transform:rotate(-10deg); }
+.bunsen { left:15%; top:17%; width:72px; height:108px; z-index:5; }
+.burner-base { position:absolute; bottom:11px; left:7px; width:59px; height:31px; border-radius:50% 50% 10px 10px; background:linear-gradient(90deg,#67797a,#dce9e7 48%,#536a6c); border:2px solid #4d6568; }
+.wick { position:absolute; bottom:39px; left:31px; width:10px; height:36px; background:linear-gradient(90deg,#6f7e80,#e3e9e7,#637477); border-radius:4px 4px 0 0; }
+.flame { position:absolute; display:block; left:20px; top:0; width:31px; height:45px; border-radius:60% 5% 65% 45%; transform:rotate(45deg); background:radial-gradient(circle at 55% 70%,#ffe064 0 17%,#ff9c28 18% 42%,#d9351d 43% 70%,transparent 71%); filter:drop-shadow(0 0 7px #ff8a22); }
+.bunsen small { position:absolute; bottom:-7px; left:0; width:100%; font-size:8px; text-align:center; }
+.ose { left:25%; top:13%; width:48px; height:205px; z-index:7; }
+.ose-handle { position:absolute; bottom:0; left:13px; width:21px; height:82px; border-radius:8px; background:linear-gradient(90deg,#c6d5d4,#fff,#a0b6b7); border:1px solid #788e91; }
+.ose-wire { position:absolute; bottom:75px; left:22px; width:4px; height:109px; background:linear-gradient(90deg,#62797c,#efffff,#597072); }
+.ose-loop { position:absolute; top:0; left:14px; width:20px; height:20px; border:3px solid #668084; border-radius:50%; }
+.ose small { position:absolute; bottom:-15px; width:100%; font-size:8px; text-align:center; }
+.ose.glowing .ose-wire,.ose.glowing .ose-loop { border-color:#ff402b; background:#ff402b; box-shadow:0 0 13px #ff7b24; }
+.ose.loaded .ose-loop { border-color:#8b612d; background:#8b612d; box-shadow:0 0 9px #c69a56; }
+.ose-mini:before { content:""; position:absolute; left:22px; top:2px; width:3px; height:37px; background:#738588; }
+.ose-mini:after { content:""; position:absolute; left:16px; top:0; width:13px; height:13px; border:2px solid #738588; border-radius:50%; }
+.alcohol-mini { width:27px; height:38px; margin:3px 10px; border:2px solid #86b9bc; border-radius:5px;background:#bdebea; }
+.alcohol-mini:before { content:""; position:absolute; left:7px; top:-7px; width:22px; height:8px; border:2px solid #719396; border-bottom:0; }
+.bunsen-mini:before { content:""; position:absolute; left:14px; top:14px; width:24px; height:25px; border-radius:50% 50% 5px 5px; background:#aebcbc; }
+.bunsen-mini:after { content:""; position:absolute; left:19px; top:0; width:14px; height:22px; border-radius:70% 5% 70% 40%; transform:rotate(45deg); background:#ff9e2b; }
+
+/* Pipette filler follows the reference: one joined vertical bulb body with A/S/E valves. */
+.pipette .bulb { left:13px; right:auto; top:0; width:58px; height:64px; border-radius:50% 50% 47% 47%; }
+.pipette .bulb-ring { left:20px; top:-18px; width:18px; height:25px; border-radius:8px 8px 3px 3px; background:linear-gradient(90deg,#8c1818,#db433b 50%,#881716); box-shadow:inset 2px 0 #f37667; }
+.pipette .valve-a { left:-19px; right:auto; top:37px; width:27px; height:15px; border-radius:8px 2px 2px 8px; background:#a71e1c; }
+.pipette .valve-b { left:auto; right:-19px; top:37px; width:27px; height:15px; border-radius:2px 8px 8px 2px; background:#a71e1c; }
+.pipette .valve-c { left:20px; bottom:-19px; width:18px; height:25px; border-radius:3px 3px 8px 8px; background:linear-gradient(90deg,#791312,#cf352f 50%,#7c1413); }
+.pipette .bulb-ring::after,.pipette .valve-a::after,.pipette .valve-b::after,.pipette .valve-c::after { position:absolute; color:#ffd3c9; font:700 10px Arial; text-shadow:0 1px #6d1111; }
+.pipette .bulb-ring::after { content:"A"; left:5px; top:6px; }.pipette .valve-a::after { content:"S"; left:8px; top:2px; }.pipette .valve-b::after { content:"E"; right:8px; top:2px; }.pipette .valve-c::after { content:"S"; left:5px; top:6px; }
+.pipette .bulb::after { left:17px; bottom:-21px; width:25px; height:29px; z-index:2; }
+
+/* The handle stays above; wire and circular loop point vertically down into a tube. */
+.ose-handle { top:0; bottom:auto; }
+.ose-wire { top:75px; bottom:auto; height:106px; }
+.ose-loop { top:auto; bottom:0; height:23px; border-radius:50%; transform:perspective(24px) rotateX(13deg); }
+
+@media (max-width: 1150px) {
+  .tube-rack { width: 410px; left: 31%; transform: scale(.9); transform-origin: bottom left; }
+  .bglb-rack { left: 72%; transform: scale(.72); transform-origin: bottom left; }
+  .ecb-rack { left: 72%; transform: scale(.72); transform-origin: bottom left; }
+}
+@media (max-width: 700px) {
+  .bench { min-height: 650px; }
+  .pipette10 { left: 17%; bottom: 9%; }
+  .pipette1 { left: 30%; bottom: 9%; }
+  .tube-rack { left: 5%; bottom: 27%; transform: scale(.7); transform-origin: bottom left; }
+  .bglb-rack { left: 66%; bottom: 35%; transform: scale(.62); transform-origin: bottom left; }
+  .ecb-rack { left: 66%; bottom: 7%; transform: scale(.62); transform-origin: bottom left; }
+}
