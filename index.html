@@ -19,6 +19,31 @@
       <div class="brand"><span class="flask-mark">⌬</span><div><b>VIRTUAL LABORATORY</b><small>PEMERIKSAAN APM/MPN COLIFORM — AIR SUMUR BOR</small></div></div>
       <div class="top-actions"><button id="helpBtn" class="text-btn">? Petunjuk</button><button id="resetBtn" class="text-btn">↻ Reset Lab</button><div class="step-readout">Tahap <b id="stageNumber">1</b> dari 10 <span class="progress"><i id="progressFill"></i></span></div></div>
     </header>
+    <section id="presentation" class="presentation" aria-label="Slide pembelajaran MPN">
+      <article class="slide active" data-slide="0">
+        <span class="slide-kicker">SLIDE 1 • PEMBUKAAN</span><h1>Pemeriksaan APM/MPN Coliform</h1>
+        <p>Masukkan video pengambilan sampel Anda untuk pembuka presentasi.</p>
+        <label class="video-drop"><input id="videoUpload" type="file" accept="video/*"><span>＋ Pilih video pengambilan sampel</span></label>
+        <video id="sampleVideo" controls hidden></video>
+      </article>
+      <article class="slide" data-slide="1">
+        <span class="slide-kicker">SLIDE 2 • KONSEP</span><h1>Pengertian, tujuan, dan fungsi MPN</h1>
+        <div class="slide-grid"><section><h2>Pengertian</h2><p>MPN/APM adalah metode statistik untuk memperkirakan jumlah mikroorganisme berdasarkan pola tabung positif.</p></section><section><h2>Tujuan</h2><p>Mengidentifikasi indikasi cemaran coliform pada sampel air sumur bor.</p></section><section><h2>Fungsi</h2><p>Mendukung interpretasi mutu mikrobiologis sesuai metode dan SOP laboratorium.</p></section></div>
+      </article>
+      <article class="slide" data-slide="2">
+        <span class="slide-kicker">SLIDE 3 • MODUL 1</span><h1>Virtual Lab — LTB / LB</h1>
+        <p>Proses inokulasi media LB dengan pola 5–5–5, inkubasi 37°C, hingga pembacaan pola positif.</p><button class="slide-action" data-open-lab="ltb">Mulai modul LB</button>
+      </article>
+      <article class="slide" data-slide="3">
+        <span class="slide-kicker">SLIDE 4 • MODUL 2</span><h1>Virtual Lab — BGLB dan ECB</h1>
+        <p>Lakukan prosedur aseptik: alkohol 70%, ose berpijar, transfer inokulum, lalu inkubasi BGLB dan ECB.</p><button class="slide-action" data-open-lab="confirm">Lanjutkan ke BGLB &amp; ECB</button>
+      </article>
+      <article class="slide" data-slide="4">
+        <span class="slide-kicker">SLIDE 5 • PENUTUP</span><h1>Kesimpulan</h1>
+        <p>Berdasarkan hasil pemeriksaan <b>BGLB dan ECB yang menunjukkan pola 0–0–0</b>, serta hasil pembacaan pada <b>tabel MPN menunjukkan indeks MPN &lt;2/100 mL</b>, dapat disimpulkan bahwa <b>air sumur bor memiliki jumlah bakteri koliform yang sangat rendah, yaitu kurang dari 2 bakteri per 100 mL sampel</b>. Hal ini menunjukkan bahwa pada pemeriksaan tersebut <b>tidak terdeteksi adanya pertumbuhan koliform maupun E. coli pada tabung yang diuji</b>.</p><button class="slide-action" data-open-lab="results">Lihat tabel Thomas</button>
+      </article>
+      <nav class="slide-nav"><button id="prevSlide" type="button">← Sebelumnya</button><span id="slideCount">1 / 5</span><button id="nextSlide" type="button">Berikutnya →</button><button id="closeSlides" type="button">Tutup slide</button></nav>
+    </section>
 
     <section class="lab-layout">
       <aside class="equipment-panel panel">

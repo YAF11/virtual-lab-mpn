@@ -44,6 +44,8 @@
 .ecb-tube .liquid { height:35%; background:linear-gradient(90deg,#e6d06d,#fff0a0 50%,#cdb657); }
 .confirm-tube.inoculated .liquid { height:45%; }
 .confirm-tube.positive .liquid { height:51%; background:#b4a861; }
+.confirm-tube.negative { box-shadow:0 0 0 2px #9ab7b3; }
+.confirm-tube.negative::after { content:"−"; position:absolute; top:3px; left:2px; color:#4e7573; font:bold 12px Arial; z-index:7; }
 .confirm-tube .durham-tube { position: absolute; display: block; width: 8px; height: 28px; right: 3px; bottom: 14px; border: 1px solid #fff; border-radius: 5px; background: #e8ffff9c; z-index: 2; }
 .confirm-tube .durham-tube b { display: none; position: absolute; width: 4px; height: 5px; left: 1px; top: 2px; background: #fff; border-radius: 50%; }
 .confirm-tube > span:last-child { position: absolute; bottom: -12px; left: 0; right: 0; z-index: 4; }
@@ -94,6 +96,50 @@
 .ose-handle { top:0; bottom:auto; }
 .ose-wire { top:75px; bottom:auto; height:106px; }
 .ose-loop { top:auto; bottom:0; height:23px; border-radius:50%; transform:perspective(24px) rotateX(13deg); }
+
+/* Five-slide learning flow placed above the virtual laboratory. */
+.presentation { position:fixed; inset:0; z-index:100; display:flex; flex-direction:column; justify-content:center; align-items:center; padding:42px; color:#eafeff; background:radial-gradient(circle at 20% 15%,#147b8c 0,#07364f 42%,#031b32 100%); transition:opacity .25s, visibility .25s; }
+.presentation.hidden { opacity:0; visibility:hidden; pointer-events:none; }
+.slide { display:none; width:min(940px,94vw); min-height:440px; padding:54px 62px; border:1px solid #6fd4d1aa; border-radius:18px; background:linear-gradient(135deg,#ffffff18,#ffffff08); box-shadow:0 22px 70px #00162488; }
+.slide.active { display:block; animation:slideIn .35s ease both; }.slide h1{font-size:clamp(29px,4vw,50px);line-height:1.1;margin:12px 0 16px;color:#fff}.slide p{font-size:17px;max-width:730px;color:#d2f3f2}.slide-kicker{color:#66f2c5;font-size:12px;font-weight:800;letter-spacing:1.3px}.slide-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:34px}.slide-grid section{padding:20px;border-radius:10px;background:#041e34a8;border:1px solid #85dad34a}.slide-grid h2{font-size:18px;color:#72f0cb;margin:0}.slide-grid p{font-size:14px}.slide-action{margin-top:30px;padding:13px 22px;border:0;border-radius:6px;background:#15bf8e;color:#032738;font:800 14px "Segoe UI",Arial;cursor:pointer}.slide-action:hover{background:#55efbd}.slide-nav{width:min(940px,94vw);display:flex;align-items:center;gap:12px;margin-top:20px}.slide-nav button{padding:9px 13px;border:1px solid #73c9c5;border-radius:5px;background:#ffffff12;color:#e7ffff;cursor:pointer}.slide-nav button:disabled{opacity:.35;cursor:default}.slide-nav #closeSlides{margin-left:auto}.video-drop{display:flex;align-items:center;justify-content:center;max-width:590px;min-height:110px;margin-top:25px;border:2px dashed #63d9d1;border-radius:10px;cursor:pointer;background:#001d3077}.video-drop input{position:absolute;width:1px;height:1px;opacity:0}.video-drop span{color:#9ef9dc;font-weight:700}.slide video{display:block;max-width:min(100%,720px);max-height:285px;margin-top:20px;border-radius:9px;background:#000}@keyframes slideIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+
+/* Clear bench zones keep tools in fixed, uncluttered groups before users drag them. */
+.alcohol{left:3%;top:7%}.bunsen{left:12%;top:9%}.ose{left:21%;top:6%}.bottle{left:4%;bottom:8%}.pipette10{left:16%;bottom:7%}.pipette1{left:27%;bottom:7%}.tube-rack{left:35%;bottom:5%}.incubator{right:3%;top:8%}.incubator44{right:24%;top:8%}.bglb-rack{left:70%;bottom:36%}.ecb-rack{left:70%;bottom:8%}.waste{right:3%;bottom:8%}
+@media(max-width:700px){.presentation{padding:15px}.slide{min-height:400px;padding:34px 24px}.slide-grid{grid-template-columns:1fr}.slide p{font-size:15px}.slide-nav{gap:6px}.slide-nav button{padding:8px;font-size:11px}}
+
+/* A focused bench per presentation module prevents unused tools from overlapping. */
+.module-ltb #bglb-rack,.module-ltb #ecb-rack,.module-ltb #incubator44,.module-ltb #ose { display:none; }
+.module-ltb .tube-rack { left:38%; bottom:6%; }
+.module-ltb .incubator { right:4%; top:9%; }
+.module-ltb .bottle { left:5%; bottom:8%; }
+.module-ltb .pipette10 { left:18%; bottom:7%; }
+.module-ltb .pipette1 { left:28%; bottom:7%; }
+
+.module-confirm #bottle,.module-confirm #pipette10 { display:none; }
+.module-confirm #pipette1 { display:block; left:20%; bottom:7%; transform:scale(.72) !important; transform-origin:bottom center !important; }
+/* Confirmation slide retains the full LB 5–5–5 rack; each tube matches BGLB/ECB tube scale. */
+.module-confirm #tube-rack { display:block; left:33%; bottom:8%; width:188px; height:340px; transform:none !important; transform-origin:bottom left !important; z-index:6; background:#eaf2f0aa; border:5px solid #b2c0bf; border-radius:5px; box-shadow:0 6px 7px #203f4166; }
+.module-confirm #tube-rack .rack-back { display:none; }
+.module-confirm #tube-rack .rack-title { margin:0 -1px; background:#e5f5ee; }
+.module-confirm #tube-rack .tube-grid { position:absolute; top:27px; left:13px; right:13px; display:grid; grid-template-columns:repeat(5,1fr); grid-template-rows:repeat(3,88px); gap:8px 7px; z-index:2; }
+.module-confirm #tube-rack .test-tube { display:block; height:88px; min-width:0; border:2px solid #9dbfc2; border-top:7px solid #c9dcda; border-radius:3px 3px 10px 10px; background:#efffffba; }
+.module-confirm #tube-rack .test-tube:before { display:none; }
+.module-confirm #tube-rack .test-tube .tube-cap { top:-10px; }
+.module-confirm #tube-rack .test-tube .liquid { height:48% !important; }
+.module-confirm #tube-rack .test-tube .durham-tube { height:28px; bottom:14px; }
+.module-confirm #tube-rack .tube-num { bottom:-13px; font-size:8px; }
+.module-confirm #tube-rack .volume-label { display:block; top:-20px; font-size:8px; }
+.module-confirm #tube-rack .rack-base { left:5px; right:5px; bottom:7px; height:17px; }
+.module-confirm .incubator { right:4%; top:8%; }
+.module-confirm .incubator44 { right:25%; top:8%; }
+.module-confirm .bglb-rack { left:57%; bottom:35%; }
+.module-confirm .ecb-rack { left:78%; bottom:35%; }
+.module-confirm .alcohol { left:5%; top:11%; }
+.module-confirm .bunsen { left:16%; top:10%; }
+.module-confirm .ose { left:28%; top:8%; }
+.module-confirm .waste { right:3%; bottom:8%; }
+.incubator.has-rack .rack-shadow { height:48px; bottom:35px; background:repeating-linear-gradient(90deg,#c5e1d9 0 8px,#6e9d94 8px 12px); border:4px solid #b7c8c3; box-shadow:0 0 9px #74e2c5; }
+.incubator.has-rack .rack-shadow::after { content:"LTB • SUDAH DIINKUBASI"; position:absolute; left:-15px; right:-15px; bottom:-25px; color:#c9fff1; font:700 8px Arial; white-space:nowrap; }
 
 @media (max-width: 1150px) {
   .tube-rack { width: 410px; left: 31%; transform: scale(.9); transform-origin: bottom left; }
