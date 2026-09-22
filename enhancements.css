@@ -116,12 +116,12 @@
 .module-ltb .pipette1 { left:28%; bottom:7%; }
 
 .module-confirm #bottle,.module-confirm #pipette10 { display:none; }
-.module-confirm #pipette1 { display:block; left:20%; bottom:7%; transform:scale(.72) !important; transform-origin:bottom center !important; }
-/* Confirmation slide retains the full LB 5–5–5 rack; each tube matches BGLB/ECB tube scale. */
-.module-confirm #tube-rack { display:block; left:33%; bottom:8%; width:188px; height:340px; transform:none !important; transform-origin:bottom left !important; z-index:6; background:#eaf2f0aa; border:5px solid #b2c0bf; border-radius:5px; box-shadow:0 6px 7px #203f4166; }
+.module-confirm #pipette1 { display:none; }
+/* Confirmation slide retains the full LB 5–5–5 rack horizontally, like the main LB rack. */
+.module-confirm #tube-rack { display:block; left:30%; bottom:8%; width:400px; height:151px; transform:none !important; transform-origin:bottom left !important; z-index:6; background:#eaf2f0aa; border:5px solid #b2c0bf; border-radius:5px; box-shadow:0 6px 7px #203f4166; }
 .module-confirm #tube-rack .rack-back { display:none; }
 .module-confirm #tube-rack .rack-title { margin:0 -1px; background:#e5f5ee; }
-.module-confirm #tube-rack .tube-grid { position:absolute; top:27px; left:13px; right:13px; display:grid; grid-template-columns:repeat(5,1fr); grid-template-rows:repeat(3,88px); gap:8px 7px; z-index:2; }
+.module-confirm #tube-rack .tube-grid { position:absolute; top:27px; left:13px; right:13px; display:grid; grid-template-columns:repeat(15,1fr); grid-template-rows:88px; gap:7px; z-index:2; }
 .module-confirm #tube-rack .test-tube { display:block; height:88px; min-width:0; border:2px solid #9dbfc2; border-top:7px solid #c9dcda; border-radius:3px 3px 10px 10px; background:#efffffba; }
 .module-confirm #tube-rack .test-tube:before { display:none; }
 .module-confirm #tube-rack .test-tube .tube-cap { top:-10px; }
@@ -132,6 +132,20 @@
 .module-confirm #tube-rack .rack-base { left:5px; right:5px; bottom:7px; height:17px; }
 .module-confirm .incubator { right:4%; top:8%; }
 .module-confirm .incubator44 { right:25%; top:8%; }
+
+/* Presentation report tables */
+.slide { max-height: calc(100vh - 120px); overflow: auto; }
+.report-table { width:100%; margin-top:20px; border-collapse:collapse; background:#fff; color:#1c2d32; font-size:13px; }
+.report-table th, .report-table td { border:1px solid #1f3034; padding:7px 9px; vertical-align:middle; }
+.report-table th { background:#fee3a0; font-family:Georgia,serif; font-weight:700; text-align:center; }
+.label-table th { width:37%; text-align:left; }
+.label-table td { font-weight:600; }
+.result-report tr:first-child th { background:#c6e1b2; }
+.result-report tr:nth-child(2) th { background:#fee3a0; }
+.report-table .ok, .report-table .not-ok { text-align:center; font-weight:700; }
+.report-table .ok { background:#c7e5b6; }
+.report-table .not-ok { background:#f21d19; color:#fff; }
+@media (max-width:850px) { .report-table { font-size:11px; } .report-table th, .report-table td { padding:5px; } }
 .module-confirm .bglb-rack { left:57%; bottom:35%; }
 .module-confirm .ecb-rack { left:78%; bottom:35%; }
 .module-confirm .alcohol { left:5%; top:11%; }
