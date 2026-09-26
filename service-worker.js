@@ -1,4 +1,4 @@
-const CACHE_NAME = 'virtual-lab-mpn-v1';
+const CACHE_NAME = 'virtual-lab-mpn-v2';
 const APP_FILES = [
   './',
   './index.html',
@@ -6,7 +6,8 @@ const APP_FILES = [
   './enhancements.css',
   './script.js',
   './manifest.webmanifest',
-  './lab-icon.svg'
+  './lab-icon.svg',
+  './hasil-pengamatan.jpg'
 ];
 
 self.addEventListener('install', event => {

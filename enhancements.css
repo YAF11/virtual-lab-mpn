@@ -135,6 +135,7 @@
 
 /* Presentation report tables */
 .slide { max-height: calc(100vh - 120px); overflow: auto; }
+.observation-image { display:block; width:min(100%, 1100px); max-height:calc(100vh - 245px); margin:22px auto 0; object-fit:contain; border:1px solid #987f3c; border-radius:4px; background:#fff; box-shadow:0 8px 22px #142a2e33; }
 .report-table { width:100%; margin-top:20px; border-collapse:collapse; background:#fff; color:#1c2d32; font-size:13px; }
 .report-table th, .report-table td { border:1px solid #1f3034; padding:7px 9px; vertical-align:middle; }
 .report-table th { background:#fee3a0; font-family:Georgia,serif; font-weight:700; text-align:center; }
